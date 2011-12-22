@@ -13,6 +13,14 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <distributionManagement>
+    <repository>
+      <id>cloudbees-private-release-repository</id>
+      <name>CloudBees TwitSprout Repository</name>
+      <url>dav:https://repository-twitsprout.forge.cloudbees.com/release/</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -39,4 +47,15 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+  
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+        <version>1.0-beta-2</version>
+      </extension>
+    </extensions>
+  </build>
+  
 </project>
