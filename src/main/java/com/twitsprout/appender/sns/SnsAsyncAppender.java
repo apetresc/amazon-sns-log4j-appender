@@ -2,7 +2,6 @@ package com.twitsprout.appender.sns;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.concurrent.Future;
 
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.helpers.LogLog;
@@ -14,7 +13,6 @@ import com.amazonaws.services.sns.AmazonSNSAsync;
 import com.amazonaws.services.sns.AmazonSNSAsyncClient;
 import com.amazonaws.services.sns.model.CreateTopicRequest;
 import com.amazonaws.services.sns.model.PublishRequest;
-import com.amazonaws.services.sns.model.PublishResult;
 
 public class SnsAsyncAppender extends AppenderSkeleton {
 	private final AmazonSNSAsync sns;
@@ -102,6 +100,7 @@ public class SnsAsyncAppender extends AppenderSkeleton {
 		if (snsClosed) return;
 		snsClosed = true;
 		sns.shutdown();
+		((AmazonSNSAsyncClient) sns).getExecutorService().shutdownNow();
 	}
 
 	public boolean requiresLayout() {
