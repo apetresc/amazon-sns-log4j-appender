@@ -47,21 +47,21 @@ You can find a fully-working sample (including `log4j.properties.sample`) in
 FAQ
 ---
 
-  1. **Why is my log message being truncated?**
+  **Why is my log message being truncated?**
 
   Amazon SNS limits published messages to 64K. If your log message exceeds that
   amount, the appender will automatically truncate it. Keep these messages short
   and sweet, just enough info for your admin in the field to know what's going on
   before he finds a computer to do some real analysis.
 
-  2. **Why am I getting strange `NoClassDefFoundError`s all over the place?**
+  **Why am I getting strange `NoClassDefFoundError`s all over the place?**
 
   Make sure you have both Log4J and the AWS SDK for Java already added to your
   classpath. The POM sets these dependencies to `<scope>provided</scope>` to keep
   it compatible with custom versions of both of these libraries which many
   sophisticated users will often want to use.
 
-  3. **Why does using this appender completely crash my process, using up
+  **Why does using this appender completely crash my process, using up
   truly ridiculous amounts of CPU?**
 
   The Threshold should certainly be set higher than `INFO`, otherwise the logging
