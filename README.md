@@ -47,6 +47,14 @@ You can find a fully-working sample (including `log4j.properties.sample`) in
 FAQ
 ---
 
+  **Do I need to wrap this appender in log4j's AsyncAppender?**
+
+  I don't think it will hurt, but it's not necessary. Even as a regular
+  appender, it uses the Async client for SNS, so your log statements won't
+  block while they get sent. It's really only the penalty for creating the
+  request object that you'll be incurring directly, which shouldn't be an
+  issue since this appender should only be used for **critical** errors.
+
   **Why is my log message being truncated?**
 
   Amazon SNS limits published messages to 64K. If your log message exceeds that
