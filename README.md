@@ -41,8 +41,8 @@ configuration:
      `com.twitsprout.appender.sns.SnsAsyncAppender`. Make sure to set the
      `TopicName` and `Threshold` properties on the appender as well.
 
-The Threshold should certainly be set higher than `INFO`, otherwise the logging
-messages produced by the AWS SDK's own HTTP client will overwhelm the logger.
+You can find a fully-working sample (including `log4j.properties.sample`) in
+ `src/test`. Just provide your own AWS credentials.
 
 FAQ
 ---
@@ -60,3 +60,10 @@ FAQ
   classpath. The POM sets these dependencies to `<scope>provided</scope>` to keep
   it compatible with custom versions of both of these libraries which many
   sophisticated users will often want to use.
+
+  3. **Why does using this appender completely crash my process, using up
+  truly ridiculous amounts of CPU?**
+
+  The Threshold should certainly be set higher than `INFO`, otherwise the logging
+  messages produced by the AWS SDK's own HTTP client will overwhelm the logger.
+
